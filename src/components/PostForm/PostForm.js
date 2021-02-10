@@ -20,6 +20,7 @@ const PostForm = props => {
 
   const submitHandler = e => {
     e.preventDefault()
+    if (!inputs.title || !inputs.text) return
     const newPost = {
       id: Date.now().toString(),
       title: inputs.title,
