@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { createPost } from '../../redux/actionCreators';
 
 const PostForm = props => {
   const initialInputs = {
@@ -23,7 +25,7 @@ const PostForm = props => {
       title: inputs.title,
       text: inputs.text
     }
-    props.onPostCreated(newPost)
+    props.createPost(newPost)
     setInputs(initialInputs)
   }
 
@@ -54,4 +56,14 @@ const PostForm = props => {
   );
 };
 
-export default PostForm;
+// OPT A - as a plain object
+const mapDispatchToProps = {
+  createPost
+}
+
+// OPT B - as a function
+// const mapDispatchToProps = dispatch => ({
+//   createPost: post => dispatch(createPost(post))
+// })
+
+export default connect(null, mapDispatchToProps)(PostForm);

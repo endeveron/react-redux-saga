@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux'
+
 import Post from '../Post/Post';
 
 const Posts = ({ posts }) =>
@@ -10,4 +12,8 @@ const Posts = ({ posts }) =>
     )
     : <p style={ { color: "#aaa" } }>No posts yet</p>
 
-export default Posts;
+const mapStateToProps = state => ({
+  posts: state.post.posts
+})
+
+export default connect(mapStateToProps, null)(Posts);
