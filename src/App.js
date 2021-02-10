@@ -1,28 +1,24 @@
+import { useState } from 'react';
+
 import FetchedPosts from './components/FetchedPosts/FetchedPosts';
 import PostForm from './components/PostForm/PostForm';
 import Posts from './components/Posts/Posts';
 
 function App() {
-  const posts = [
-    // {
-    //   id: 1,
-    //   title: 'First Post',
-    //   text: 'Post 1 Text'
-    // },
-    // {
-    //   id: 2,
-    //   text: 'Post 2 Text'
-    // },
-    // {
-    //   id: 3,
-    //   text: 'Post 3 Text'
-    // }
-  ]
+  const [posts, setPosts] = useState([])
+
+  const postCreatedHandler = post => {
+    setPosts([
+      ...posts,
+      post
+    ])
+  }
+
   return (
     <div className='container py-4'>
       <div className='row my-4'>
         <div className='col'>
-          <PostForm />
+          <PostForm onPostCreated={ postCreatedHandler } />
         </div>
       </div>
       <div className='row my-4'>
