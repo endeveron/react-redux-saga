@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createPost } from '../../redux/actionCreators';
+import { useDispatch, useSelector } from 'react-redux';
+import { createPost, hideAlert, showAlert } from '../../../redux/actionCreators';
 
 const PostForm = props => {
   const initialInputs = {
@@ -9,6 +9,7 @@ const PostForm = props => {
   }
 
   const [inputs, setInputs] = useState(initialInputs)
+  const alert = useSelector(state => state.UI.alert.show)
   const dispatch = useDispatch()
 
   const inputHandler = e => {
@@ -21,7 +22,12 @@ const PostForm = props => {
 
   const submitHandler = e => {
     e.preventDefault()
-    if (!inputs.title || !inputs.text) return
+    if (!inputs.title || !inputs.text) {
+      dispatch(showAlert('Please fill out all the fields'))
+      return
+    }
+    if (alert) dispatch(hideAlert())
+
     const newPost = {
       id: Date.now().toString(),
       title: inputs.title,

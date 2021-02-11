@@ -1,12 +1,14 @@
 
-import FetchedPosts from './components/FetchedPosts/FetchedPosts';
-import PostForm from './components/PostForm/PostForm';
-import Posts from './components/Posts/Posts';
+import FetchedPosts from './components/post/FetchedPosts/FetchedPosts';
+import PostForm from './components/post/PostForm/PostForm';
+import Posts from './components/post/Posts/Posts';
+import Alert from './components/UI/Alert/Alert';
 
 function App() {
 
   return (
     <div className='container py-4'>
+      <Alert />
       <div className='row my-4'>
         <div className='col'>
           <PostForm />
