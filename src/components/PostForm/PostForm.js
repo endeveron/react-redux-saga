@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createPost } from '../../redux/actionCreators';
 
 const PostForm = props => {
@@ -9,6 +9,7 @@ const PostForm = props => {
   }
 
   const [inputs, setInputs] = useState(initialInputs)
+  const dispatch = useDispatch()
 
   const inputHandler = e => {
     const t = e.target
@@ -26,7 +27,7 @@ const PostForm = props => {
       title: inputs.title,
       text: inputs.text
     }
-    props.createPost(newPost)
+    dispatch(createPost(newPost))
     setInputs(initialInputs)
   }
 
@@ -58,13 +59,13 @@ const PostForm = props => {
 };
 
 // OPT A - as a plain object
-const mapDispatchToProps = {
-  createPost
-}
+// const mapDispatchToProps = {
+//   createPost
+// }
 
 // OPT B - as a function
 // const mapDispatchToProps = dispatch => ({
 //   createPost: post => dispatch(createPost(post))
 // })
 
-export default connect(null, mapDispatchToProps)(PostForm);
+export default PostForm;
